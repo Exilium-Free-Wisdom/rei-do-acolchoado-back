@@ -4,8 +4,8 @@ export interface LoginDTO {
 }
 
 export interface RegisterDTO {
+	id?: number;
 	email: string;
 	name: string;
-	password: string;
-	section: string;
+	password?: string;
 }

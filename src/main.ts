@@ -1,24 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { swaggerConfig } from './config/swagger.config';
+import { corsConfig } from './config/cors.config';
+import { NestFastifyApplication } from '@nestjs/platform-fastify';
 
 async function bootstrap() {
-	const app = await NestFactory.create(AppModule);
-	const config = new DocumentBuilder()
-		.setTitle('Rei do Acolchoado')
-		.setDescription('The Rei do Acolchoado API description')
-		.setVersion('1.0')
-		.addBearerAuth()
-		.build();
+	const app = await NestFactory.create<NestFastifyApplication>(AppModule);
 
-	app.enableCors({
-		origin: process.env.ALLOWED_ORIGINS,
-		methods: ['GET', 'POST', 'PUT', 'DELETE'],
-		credentials: true,
-	});
+	corsConfig(app);
 
-	const document = SwaggerModule.createDocument(app, config);
-	SwaggerModule.setup('docs', app, document); // swagger vai aparecer na rota /docs
+	swaggerConfig(app);
+
 	await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();

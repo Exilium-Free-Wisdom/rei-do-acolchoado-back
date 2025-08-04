@@ -16,7 +16,7 @@ export class UserService {
             throw new Error('Email já cadastrado')
         }
 
-        const hashedPassword = await this.auth.hashPassword(user.password)
+        const hashedPassword = await this.auth.hashPassword(user.hashedPassword)
 
         if (!hashedPassword) {
             throw new Error('Failed to hash password')
@@ -24,7 +24,7 @@ export class UserService {
 
         const createdUser = await this.userRepo.create({
             ...user,
-            password: hashedPassword
+            hashedPassword: hashedPassword
         })
 
         return createdUser
@@ -37,7 +37,7 @@ export class UserService {
             throw new Error('Usuário não encontrado')
         }
 
-        const isPasswordValid = await this.auth.verifyPassword(password, user.hashedPassword, user.salt)
+        const isPasswordValid = await this.auth.verifyPassword(password, user.hashedPassword)
 
         if (!isPasswordValid) {
             throw new Error('Senha inválida')

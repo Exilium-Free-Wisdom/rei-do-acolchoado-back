@@ -12,7 +12,6 @@ export const swaggerConfig = () => {
       servers: [
         {
           url: 'http://localhost:3000',
-          description: 'Servidor Local',
         },
       ],
       components: {
@@ -26,6 +25,6 @@ export const swaggerConfig = () => {
       },
       security: [{ bearerAuth: [] }],
     },
-    apis: ['src/routes/*.js'],
+    apis: ['src/routes/*.{js,ts}', 'src/router/*.{js,ts}'],
   });
 };

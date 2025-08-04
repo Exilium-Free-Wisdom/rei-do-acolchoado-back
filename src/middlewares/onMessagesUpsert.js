@@ -1,5 +1,6 @@
-import { loadCommonFunctions } from "../utils/loadCommonFunctions"
-import { getSession } from "../utils/sessionManager"
+
+import { loadCommonFunctions } from "../utils/loadCommonFunctions.js"
+import { getSession } from "../utils/sessionManager.js"
 
 export const onMessagesUpsert = async ({ socket, messages }) => {
     if (!messages.length) return

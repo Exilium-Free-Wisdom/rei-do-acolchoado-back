@@ -2,7 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import { swaggerConfig } from "./config/swagger.config.js";
 import SwaggerUI from "swagger-ui-express";
-import { PostgresPool } from "./persistence/db/connection.js";
+import { PostgresPool } from "./persistence/db/connection.ts";
 
 const app = express();
 
@@ -19,7 +19,10 @@ const db = new PostgresPool({
     ssl: false
 });
 
+
+await db.connection();
+
 const swaggerDocs = swaggerConfig();
-app.use("/", SwaggerUI.serve, SwaggerUI.setup(swaggerDocs), await db.connection());
+app.use("/", SwaggerUI.serve, SwaggerUI.setup(swaggerDocs));
 
 export default app;

@@ -1,7 +1,7 @@
 import makeWASocket, { DisconnectReason, fetchLatestBaileysVersion, useMultiFileAuthState } from 'baileys';
 import path from 'path';
 import pino from 'pino';
-import { convertNumber, question } from '../utils/utils';
+import { convertNumber, question } from '../utils/utils.js';
 
 export const connect = async () => {
     const {state, saveCreds} = await useMultiFileAuthState(

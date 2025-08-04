@@ -1,5 +1,5 @@
 import QRCode from "qrcode"
-import { QRCode as QRCodeType } from "../@types/qrcode"
+import type { QRCode as QRCodeType } from "../@types/qrcode.ts"
 
 export const generateQRCode = async (): Promise<string> => {
     const value = '10'

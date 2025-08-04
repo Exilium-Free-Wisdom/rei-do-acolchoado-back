@@ -2,7 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import { swaggerConfig } from "./config/swagger.config.js";
 import SwaggerUI from "swagger-ui-express";
-import { PostgresPool } from "./persistence/db/connection.ts";
+import { PostgresPool } from "./persistence/db/connection.js";
 import { NewRouter } from "./router/router.js";
 import { AuthService } from "./middlewares/auth/auth.service.js";
 import { UserHandlers } from "./handlers/user.handlers.js";

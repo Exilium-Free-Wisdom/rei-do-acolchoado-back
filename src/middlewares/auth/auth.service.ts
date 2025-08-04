@@ -34,7 +34,7 @@ export class AuthService {
     async hashPassword(password: string): Promise<string> {
         const salt = await bcrypt.genSalt()
 
-        const hashedPassword = await bcrypt.hash(password + salt, bcrypt.genSaltSync().length)
+        const hashedPassword = await bcrypt.hash(password + salt, salt)
 
         if (!hashedPassword) {
             throw new Error('Failed to hash password')

@@ -1,7 +1,7 @@
-import app from "../../src/app";
+import type { NextFunction, Request, Response } from "express";
 
-export const logger = (app) => {
-    return ((req, res, next) => {
+export const logger = () => {
+    return ((req: Request, res: Response, next: NextFunction) => {
         const start = Date.now();
         
         res.on("finish", () => {

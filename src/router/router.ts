@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { corsMiddleware } from "../config/cors.config";
-import { logger } from "../../pkg/log/logger";
 import { UserHandlers } from "../handlers/user.handlers";
+import { logger } from "../pkg/log/logger";
 
-export const NewRouter = (userHandlers) => {
+export const NewRouter = (userHandlers: UserHandlers) => {
     const router = Router();
 
     router.use(corsMiddleware())

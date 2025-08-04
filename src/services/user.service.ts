@@ -1,7 +1,9 @@
+import { randomBytes } from "crypto";
 import type { User } from "../@types/user";
 import type { Auth } from "../middlewares/auth/auth.service";
 import type { UserRepository } from "../repositories/user.repository";
 import { v4 as uuidv4 } from 'uuid'
+import type { RegisterRequest } from "../handlers/user.handlers";
 
 export class UserService {
     constructor(
@@ -9,23 +11,29 @@ export class UserService {
         private auth: Auth
     ) {}
 
-    async register(user: User): Promise<User> {
-        const emailExists = await this.userRepo.checkEmailExists(user.email)
+    async register(data: RegisterRequest): Promise<User> {
+        const emailExists = await this.userRepo.checkEmailExists(data.email)
 
         if (emailExists) {
             throw new Error('Email já cadastrado')
         }
 
-        const hashedPassword = await this.auth.hashPassword(user.hashedPassword)
+        const hashedPassword = await this.auth.hashPassword(data.password)
 
         if (!hashedPassword) {
             throw new Error('Failed to hash password')
         }
 
-        const createdUser = await this.userRepo.create({
-            ...user,
-            hashedPassword: hashedPassword
-        })
+        const userRequest: User = {
+            id: uuidv4(),
+            name: data.name,
+            email: data.email,
+            salt: randomBytes(30).toString('hex'),
+            hashedPassword,
+            role: 'user'
+        }
+
+        const createdUser = await this.userRepo.create(userRequest)
 
         return createdUser
     }

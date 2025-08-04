@@ -1,4 +1,4 @@
-import QRCode from "qrcode"
+import * as QRCode from 'qrcode'
 import type { QRCode as QRCodeType } from "../@types/qrcode.ts"
 
 export const generateQRCode = async (): Promise<string> => {
@@ -9,5 +9,5 @@ export const generateQRCode = async (): Promise<string> => {
         payload: process.env.QR_PAYLOAD!,
     }
 
-    return await QRCode.toDataURL(qr.payload)
+    return await QRCode.toDataURL(JSON.stringify(qr.payload))
 }

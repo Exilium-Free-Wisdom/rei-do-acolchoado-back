@@ -16,11 +16,11 @@ services:
       - pgsql-data:/var/lib/postgresql/data
       - ./sql:/docker-entrypoint-initdb.d
 
-  nestjs:
+  node:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: nestjs
+    container_name: node
     ports:
       - "3000:3000"
     environment:
@@ -36,7 +36,7 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
-    command: yarn start:dev
+    command: yarn start
 
 volumes:
   pgsql-data:

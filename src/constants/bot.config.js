@@ -1,0 +1,1 @@
+export const TIMEOUT_IN_MMS_BY_EVENTS = 1000;

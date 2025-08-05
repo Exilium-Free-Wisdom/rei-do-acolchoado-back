@@ -3,7 +3,7 @@ import * as bcrypt from 'bcrypt'
 
 export interface Auth {
     hashPassword(password: string): Promise<string>
-    verifyPassword(password: string, hashedPassword: string, salt: string): Promise<boolean>
+    verifyPassword(password: string, hashedPassword: string): Promise<boolean>
     generateToken(payload: object): Promise<string>
     refreshToken(payload: object): Promise<string>
 }
@@ -34,7 +34,7 @@ export class AuthService {
     async hashPassword(password: string): Promise<string> {
         const salt = await bcrypt.genSalt()
 
-        const hashedPassword = await bcrypt.hash(password + salt, bcrypt.genSaltSync().length)
+        const hashedPassword = await bcrypt.hash(password + salt, salt)
 
         if (!hashedPassword) {
             throw new Error('Failed to hash password')
@@ -43,8 +43,7 @@ export class AuthService {
         return hashedPassword.toString()
     }
 
-    async verifyPassword(password: string, hashedPassword: string, salt: string): Promise<boolean> {
-        const err = bcrypt.compareSync(hashedPassword, password + salt)
-        return !err
+    async verifyPassword(password: string, hashedPassword: string): Promise<boolean> {
+        return await bcrypt.compare(password, hashedPassword)
     }
 }

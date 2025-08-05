@@ -22,13 +22,13 @@ export class UserModel {
         return query.rows[0] as User
     }
 
-    async checkEmailExists(email: string): Promise<boolean> {
+    async checkEmailExists(email: string): Promise<User | null> {
         const query = await this.pool.query(
-            `SELECT * FROM SYS_USR WHERE SYS_EMAIL = $1 IS NOT NULL`,
+            `SELECT SYS_ID as id, SYS_NAME as name, SYS_EMAIL as email, SYS_PASSWORD as hashedPassword, SYS_ROLE as role, SYS_SALT as salt FROM SYS_USR WHERE SYS_EMAIL = $1`,
             [email]
         )
         
-        return (query.rowCount ?? 0) > 0;
+        return query.rows.length > 0 ? query.rows[0] as User : null;
     }
 
     async getByEmail(email: string): Promise<User> {
@@ -40,3 +40,4 @@ export class UserModel {
         return query.rows[0] as User
     }
 }
+

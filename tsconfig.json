@@ -13,6 +13,7 @@
     "target": "es2022",
     "types": [],
     "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],

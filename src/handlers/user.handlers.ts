@@ -1,5 +1,5 @@
+import type { FastifyReply, FastifyRequest } from 'fastify';
 import { UserService } from './../services/user.service';
-import type { Request, Response } from 'express';
 
 export interface RegisterRequest {
     name: string;
@@ -19,29 +19,29 @@ export class UserHandlers {
         this.UserService = UserService
     }
 
-    async register(req: Request, res: Response) {
+    async register(req: FastifyRequest, res: FastifyReply) {
         try {
             const data = req.body as RegisterRequest
 
             const user = await this.UserService.register(data)
 
-            return res.status(201).json({ ok: "Usuário cadastrado com sucesso", user })
+            return res.status(201).send({ ok: "Usuário cadastrado com sucesso", user })
 
         } catch (error) {
-            return res.status(400).json({ error: `Ocorreu algum problema na tentativa do cadastro ${error}` })
+            return res.status(400).send({ error: `Ocorreu algum problema na tentativa do cadastro ${error}` })
         }
     }
 
-    async login(req: Request, res: Response) {
+    async login(req: FastifyRequest, res: FastifyReply) {
         try {
             const data = req.body as LoginRequest
 
             const [acessToken, refreshToken] = await this.UserService.login(data.email, data.password)
 
-            return res.status(200).json({ acessToken, refreshToken })
+            return res.status(200).send({ acessToken, refreshToken })
 
         } catch (error) {
-            return res.status(400).json({ error: `Ocorreu algum problema na tentativa de login ${error}` })
+            return res.status(400).send({ error: `Ocorreu algum problema na tentativa de login ${error}` })
         }
     }
 }

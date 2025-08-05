@@ -12,9 +12,9 @@ export class UserService {
     ) {}
 
     async register(data: RegisterRequest): Promise<User> {
-        const emailExists = await this.userRepo.checkEmailExists(data.email)
+        const existingUser = await this.userRepo.checkEmailExists(data.email)
 
-        if (emailExists) {
+        if (existingUser) {
             throw new Error('Email já cadastrado')
         }
 
@@ -51,7 +51,7 @@ export class UserService {
             throw new Error('Senha inválida')
         }
 
-        const update = this.userRepo.update(user)
+        const update = await this.userRepo.update(user)
 
         if (!update) {
             throw new Error('Failed to update user')

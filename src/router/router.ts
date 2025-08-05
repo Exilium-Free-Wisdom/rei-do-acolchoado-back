@@ -1,18 +1,16 @@
-import { Router } from "express";
-import { corsMiddleware } from "../config/cors.config";
+import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { UserHandlers } from "../handlers/user.handlers";
-import { logger } from "../pkg/log/logger";
 
-export const NewRouter = (userHandlers: UserHandlers) => {
-    const router = Router();
-
-    router.use(corsMiddleware())
-
-    router.use(logger())
+export const NewRouter = (app: FastifyInstance, userHandlers: UserHandlers) => {
+    const router = app
     
     // Public routers
-    router.post("/login", (req, res) => userHandlers.login(req, res));
-    router.post("/register", (req, res) => userHandlers.register(req, res));
+    router.post("/login", async (req: FastifyRequest, res: FastifyReply) => {
+        return userHandlers.login(req, res)
+    });
+    router.post("/register", async (req: FastifyRequest, res: FastifyReply) => {
+        return userHandlers.register(req, res)
+    });
 
     return router
 }

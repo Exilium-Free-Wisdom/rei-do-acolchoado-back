@@ -14,11 +14,13 @@ import fastifyCors from "@fastify/cors";
 
 export const app = fastify({
   logger: {
+    level: 'info',
     transport: {
       target: 'pino-pretty',
       options: {
         translateTime: 'SYS:standard',
-        ignore: 'pid,hostname',
+        ignore: 'pid,hostname,req,res,err',
+        messageFormat: '[${req.method}] ${req.url} - ${res.statusCode}',
       },
     },
   },
@@ -41,7 +43,7 @@ await app.register(fastifySwagger, {
 await app.register(fastifyCors, { origin: process.env.ORIGIN_CORS || '*' });
 
 await app.register(fastifySwaggerUi, {
-    routePrefix: "/docs", 
+    routePrefix: "/", 
 });
 
 const db = new PostgresPool({

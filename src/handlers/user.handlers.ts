@@ -1,13 +1,13 @@
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import { UserService } from './../services/user.service';
 
-export interface RegisterRequest {
+export type RegisterRequest = {
     name: string;
     email: string;
     password: string;
 }
 
-export interface LoginRequest {
+export type LoginRequest = {
     email: string;
     password: string;
 }

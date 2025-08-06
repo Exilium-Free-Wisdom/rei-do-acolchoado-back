@@ -1,7 +1,7 @@
 ## Rei do acolchoado backend
 
 <details>
-<sumary>Primeiros passos</sumary>
+<summary>Primeiros passos</summary>
 
 ```bash
 # Clone o projeto para sua máquina
@@ -13,6 +13,7 @@ git clone git@github.com:Exilium-Free-Wisdom/rei-do-acolchoado-back.git
 yarn 
 ```
 </details>
+
 <details>
 <summary>🐳 Iniciando a aplicação docker</summary>
 
@@ -28,4 +29,4 @@ docker logs -n 20 -f store_manager
 
 ## Diagrama das tabelas do banco de dado
 
-<img src="./public/diagram.jpg" width="900"/>
+<img src="./public/diagram.jpg" height="400"/>

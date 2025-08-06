@@ -29,4 +29,4 @@ docker logs -n 20 -f store_manager
 
 ## Diagrama das tabelas do banco de dado
 
-<img src="./public/diagram.jpg" height="400"/>
+<img src="./public/diagram.png"/>

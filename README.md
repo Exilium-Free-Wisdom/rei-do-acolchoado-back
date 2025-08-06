@@ -1,7 +1,7 @@
 ## Rei do acolchoado backend
 
 <details>
-<sumary>Primeiros passos</sumary>
+<summary>Primeiros passos</summary>
 
 ```bash
 # Clone o projeto para sua máquina
@@ -13,6 +13,7 @@ git clone git@github.com:Exilium-Free-Wisdom/rei-do-acolchoado-back.git
 yarn 
 ```
 </details>
+
 <details>
 <summary>🐳 Iniciando a aplicação docker</summary>
 

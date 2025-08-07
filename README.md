@@ -30,3 +30,8 @@ docker logs -n 20 -f store_manager
 ## Diagrama das tabelas do banco de dado
 
 <img src="./public/diagram.png"/>
+
+
+## Excalidraw do projeto
+
+<a href="https://excalidraw.com/#json=9R2saPUdh4emyMFw-S6vI,UKAfUxfy8yF8Hrv9JZnR8g">Englobamento do projeto</a>

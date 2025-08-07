@@ -35,3 +35,5 @@ docker logs -n 20 -f store_manager
 ## Excalidraw do projeto
 
 <a href="https://excalidraw.com/#json=9R2saPUdh4emyMFw-S6vI,UKAfUxfy8yF8Hrv9JZnR8g">Englobamento do projeto</a>
+
+<img src="./public//excalidraw.png"/>

@@ -22,8 +22,6 @@ yarn
 # A aplicação estará disponível em `http://localhost:3000` em modo de desenvolvimento
 docker-compose up --build
 
-# É possível ver os logs da aplicação com `docker logs -n 20 -f <nome-do-container>`
-docker logs -n 20 -f store_manager
 ```
 </details>
 

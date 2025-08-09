@@ -22,8 +22,6 @@ yarn
 # A aplicação estará disponível em `http://localhost:3000` em modo de desenvolvimento
 docker-compose up --build
 
-# É possível ver os logs da aplicação com `docker logs -n 20 -f <nome-do-container>`
-docker logs -n 20 -f store_manager
 ```
 </details>
 
@@ -35,3 +33,5 @@ docker logs -n 20 -f store_manager
 ## Excalidraw do projeto
 
 <a href="https://excalidraw.com/#json=9R2saPUdh4emyMFw-S6vI,UKAfUxfy8yF8Hrv9JZnR8g">Englobamento do projeto</a>
+
+<img src="./public//excalidraw.png"/>

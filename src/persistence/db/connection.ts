@@ -1,6 +1,6 @@
 import { Pool } from "pg";
 
-export interface PostgresConfig {
+export type PostgresConfig = {
     host: string;
     user: string;
     database: string;

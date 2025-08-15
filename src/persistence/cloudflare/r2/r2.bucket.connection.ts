@@ -1,5 +1,5 @@
 // !TODO: implement R2 bucket connection
-import { S3Client } from "@aws-sdk/client-s3";
+import { ListBucketsCommand, S3Client } from "@aws-sdk/client-s3";
 
 type R2BucketConfig = {
     region: string,
@@ -19,5 +19,19 @@ export class R2BucketConnection {
                 secretAccessKey: config.secretKey
             }
         })
+    }
+
+    async connection(): Promise<void> {
+        await this.r2.send(new ListBucketsCommand({}))
+        console.info('Conectado ao R2 bucket')
+    }
+
+    async disconnection(): Promise<void> {
+        this.r2.destroy()
+        console.info('Desconectado do R2 bucket')
+    }
+
+    getR2(): S3Client {
+        return this.r2
     }
 }

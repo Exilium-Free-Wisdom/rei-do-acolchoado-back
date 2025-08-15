@@ -25,7 +25,7 @@ export class UserHandlers {
 
             const user = await this.UserService.register(data)
 
-            return res.status(201).send({ ok: "Usuário cadastrado com sucesso", user })
+            return res.status(201).send({ ok: `Usuário cadastrado com sucesso ${user}` })
 
         } catch (error) {
             return res.status(400).send({ error: `Ocorreu algum problema na tentativa do cadastro ${error}` })
